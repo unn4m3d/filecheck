@@ -24,14 +24,14 @@ data class FileInfo(val name : String, val size : Long, val sha256 : String?, va
 
         try {
             if(sha256 != null) {
-                val sum = SHA256.hash(fis).toString()
+                val sum = SHA256.hash(fis).toHex()
                 if (sum != sha256) {
                     cb("SHA256 failed : $sum, not $sha256")
                     return false
                 }
             }
             if(sha512 != null) {
-                val sum = SHA512.hash(fis).toString()
+                val sum = SHA512.hash(fis).toHex()
                 if (sum != sha512) {
                     cb("SHA512 failed : $sum, not $sha512")
                     return false
@@ -80,4 +80,20 @@ fun fromFile(path : String) : FileInfo
         fis.close()
     }
 
+}
+
+private val HEX_CHARS = "0123456789ABCDEF".toCharArray()
+
+fun ByteArray.toHex() : String{
+    val result = StringBuffer()
+
+    forEach {
+        val octet = it.toInt()
+        val firstIndex = (octet and 0xF0).ushr(4)
+        val secondIndex = octet and 0x0F
+        result.append(HEX_CHARS[firstIndex])
+        result.append(HEX_CHARS[secondIndex])
+    }
+
+    return result.toString()
 }

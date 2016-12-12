@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Class-Path: kotson-2.4.0.jar gson-2.7.jar kotlin-stdlib-1.0.3.jar kotl
+ in-runtime-1.0.3.jar kotlin-runtime.jar kotlin-reflect.jar
+Main-Class: 
+

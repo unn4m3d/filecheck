@@ -6,6 +6,7 @@ import java.util.*
 /**
  * Created by unn4m3d on 11.12.16.
  */
+
 class FileChecker(val path : String, val files : HashMap<String,FileInfo>){
     fun check(ignore : Regex, callback : (State,Exception?,String?) -> Void) : ArrayList<FileResult>
     {
@@ -45,7 +46,7 @@ class FileChecker(val path : String, val files : HashMap<String,FileInfo>){
         }
 
         for(pair in _files) {
-            if(!pair.key.matches(ignore)) result.add(FileResult(pair.key,FileState.UNWANTED))
+            if(!pair.key.matches(ignore) && !File(pair.value).isDirectory) result.add(FileResult(pair.key,FileState.UNWANTED))
         }
 
         callback(State.FINISH,null,"Finished")

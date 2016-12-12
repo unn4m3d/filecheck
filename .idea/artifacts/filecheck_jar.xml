@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact name="filecheck:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/filecheck_jar</output-path>
+    <root id="root">
+      <element id="archive" name="filecheck.jar">
+        <element id="module-output" name="filecheck" />
+      </element>
+      <element id="library" level="project" name="com.github.salomonbrys.kotson:kotson:2.4.0" />
+      <element id="library" level="project" name="KotlinJavaRuntime" />
+    </root>
+  </artifact>
+</component>
